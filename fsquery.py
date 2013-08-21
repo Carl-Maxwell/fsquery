@@ -1,7 +1,7 @@
 import os
 import argparse
 
-parser = argparse.ArgumentParser(description='Query your filesystem to find a certain file')
+parser = argparse.ArgumentParser(description='Query your filesystem to find a file')
 
 parser.add_argument(
 	'terms',
