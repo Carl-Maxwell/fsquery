@@ -27,24 +27,17 @@ is_dir = args.terms[-1][-1] == '/'
 if is_dir:
 	args.terms[-1] = args.terms[-1][0:-1]
 
-def match(term, l):
-	for e in l:
-		if fnmatch(e, term):
-			return e
-	return False
-
 def query(start_path, terms):
 	for current_path, directories, files in walk(start_path):
-		if len(terms) == 1:
-			if is_dir:
-				thing = match(terms[0], directories)
-			else:
-				thing = match(terms[0], files)
-			if thing:
-				print path.join(current_path, terms[0])
-				if args.first:
-					exit()
-		elif len(terms) > 1 and match(terms[0], directories):
-			query(path.join(current_path, terms[0]), terms[1:])
+		l = directories if (len(terms) > 1 or is_dir) else files
+
+		for e in l:
+			if fnmatch(e, terms[0]):
+				if len(terms) > 1:
+					query(path.join(current_path, e), terms[1:])
+				else:
+					print path.join(current_path, e)
+					if args.first:
+						exit()
 
 query('./', args.terms)
