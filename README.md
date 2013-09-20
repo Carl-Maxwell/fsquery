@@ -42,4 +42,4 @@ save me some typing when searching for stuff.
 in these cases I could probably leave out the `images/` parts of the queries and they 
 would still work. It's much shorter than remembering & typing out the whole path.
 
-(actually I have aliased f to fsquery, so it's a little shorter when I use it.)
+(actually I have aliased `f` to `fsquery`, so it's a little shorter when I use it.)
